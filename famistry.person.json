@@ -1,0 +1,290 @@
+[{
+  "_id": {
+    "$oid": "69691e889f473b0770b00bdb"
+  },
+  "name": "Khadar Basha",
+  "gender": "male",
+  "birthDate": {
+    "$date": {
+      "$numberLong": "-477898200000"
+    }
+  },
+  "fatherId": "",
+  "motherId": "",
+  "spouseId": "69691eb29f473b0770b00bdc",
+  "isAlive": true,
+  "imageUrl": "",
+  "attributes": {},
+  "relationships": [
+    {
+      "targetId": "69691eb29f473b0770b00bdc",
+      "type": "PARTNER"
+    }
+  ],
+  "_class": "com.famistry.famistry_personnel.model.Person"
+},
+{
+  "_id": {
+    "$oid": "69691eb29f473b0770b00bdc"
+  },
+  "name": "Naseem Taj",
+  "gender": "female",
+  "birthDate": {
+    "$date": {
+      "$numberLong": "-396855000000"
+    }
+  },
+  "fatherId": "",
+  "motherId": "",
+  "spouseId": "69691e889f473b0770b00bdb",
+  "isAlive": true,
+  "imageUrl": "",
+  "attributes": {},
+  "relationships": [
+    {
+      "targetId": "69691e889f473b0770b00bdb",
+      "type": "PARTNER"
+    }
+  ],
+  "_class": "com.famistry.famistry_personnel.model.Person"
+},
+{
+  "_id": {
+    "$oid": "69691edc9f473b0770b00bdd"
+  },
+  "name": "Reshma M",
+  "gender": "female",
+  "birthDate": {
+    "$date": "1983-11-12T18:30:00.000Z"
+  },
+  "fatherId": "69691e889f473b0770b00bdb",
+  "motherId": "69691eb29f473b0770b00bdc",
+  "spouseId": "69691f439f473b0770b00be0",
+  "isAlive": true,
+  "imageUrl": "",
+  "attributes": {},
+  "relationships": [
+    {
+      "targetId": "69691f439f473b0770b00be0",
+      "type": "PARTNER"
+    },
+    {
+      "targetId": "69691e889f473b0770b00bdb",
+      "type": "FATHER"
+    },
+    {
+      "targetId": "69691eb29f473b0770b00bdc",
+      "type": "MOTHER"
+    }
+  ],
+  "_class": "com.famistry.famistry_personnel.model.Person"
+},
+{
+  "_id": {
+    "$oid": "69691f059f473b0770b00bde"
+  },
+  "name": "Imtiyaz M",
+  "gender": "male",
+  "birthDate": {
+    "$date": "1986-09-17T18:30:00.000Z"
+  },
+  "fatherId": "69691e889f473b0770b00bdb",
+  "motherId": "69691eb29f473b0770b00bdc",
+  "spouseId": "69691f9a9f473b0770b00be1",
+  "isAlive": true,
+  "imageUrl": "",
+  "attributes": {},
+  "relationships": [
+    {
+      "targetId": "69691f9a9f473b0770b00be1",
+      "type": "PARTNER"
+    },
+    {
+      "targetId": "69691e889f473b0770b00bdb",
+      "type": "FATHER"
+    },
+    {
+      "targetId": "69691eb29f473b0770b00bdc",
+      "type": "MOTHER"
+    }
+  ],
+  "_class": "com.famistry.famistry_personnel.model.Person"
+},
+{
+  "_id": {
+    "$oid": "69691f249f473b0770b00bdf"
+  },
+  "name": "Javeed M",
+  "gender": "male",
+  "birthDate": {
+    "$date": "1991-06-30T18:30:00.000Z"
+  },
+  "fatherId": "69691e889f473b0770b00bdb",
+  "motherId": "69691eb29f473b0770b00bdc",
+  "spouseId": "69691fc29f473b0770b00be2",
+  "isAlive": true,
+  "imageUrl": "",
+  "attributes": {},
+  "relationships": [
+    {
+      "targetId": "69691fc29f473b0770b00be2",
+      "type": "PARTNER"
+    },
+    {
+      "targetId": "69691e889f473b0770b00bdb",
+      "type": "FATHER"
+    },
+    {
+      "targetId": "69691eb29f473b0770b00bdc",
+      "type": "MOTHER"
+    }
+  ],
+  "_class": "com.famistry.famistry_personnel.model.Person"
+},
+{
+  "_id": {
+    "$oid": "69691f439f473b0770b00be0"
+  },
+  "name": "Shabeer S",
+  "gender": "male",
+  "birthDate": {
+    "$date": "1981-01-24T18:30:00.000Z"
+  },
+  "fatherId": "",
+  "motherId": "",
+  "spouseId": "69691edc9f473b0770b00bdd",
+  "isAlive": true,
+  "imageUrl": "",
+  "attributes": {},
+  "relationships": [
+    {
+      "targetId": "69691edc9f473b0770b00bdd",
+      "type": "PARTNER"
+    }
+  ],
+  "_class": "com.famistry.famistry_personnel.model.Person"
+},
+{
+  "_id": {
+    "$oid": "69691f9a9f473b0770b00be1"
+  },
+  "name": "Husna S",
+  "gender": "female",
+  "birthDate": {
+    "$date": "1987-05-31T18:30:00.000Z"
+  },
+  "fatherId": "",
+  "motherId": "",
+  "spouseId": "69691f059f473b0770b00bde",
+  "isAlive": true,
+  "imageUrl": "",
+  "attributes": {},
+  "relationships": [
+    {
+      "targetId": "69691f059f473b0770b00bde",
+      "type": "PARTNER"
+    }
+  ],
+  "_class": "com.famistry.famistry_personnel.model.Person"
+},
+{
+  "_id": {
+    "$oid": "69691fc29f473b0770b00be2"
+  },
+  "name": "Fahima S",
+  "gender": "female",
+  "fatherId": "",
+  "motherId": "",
+  "spouseId": "69691f249f473b0770b00bdf",
+  "isAlive": true,
+  "imageUrl": "",
+  "attributes": {},
+  "relationships": [
+    {
+      "targetId": "69691f249f473b0770b00bdf",
+      "type": "PARTNER"
+    }
+  ],
+  "_class": "com.famistry.famistry_personnel.model.Person"
+},
+{
+  "_id": {
+    "$oid": "69691fe49f473b0770b00be3"
+  },
+  "name": "Rehaan S",
+  "gender": "male",
+  "birthDate": {
+    "$date": "2010-12-26T18:30:00.000Z"
+  },
+  "fatherId": "69691f439f473b0770b00be0",
+  "motherId": "69691edc9f473b0770b00bdd",
+  "spouseId": "",
+  "isAlive": true,
+  "imageUrl": "",
+  "attributes": {},
+  "relationships": [
+    {
+      "targetId": "69691f439f473b0770b00be0",
+      "type": "FATHER"
+    },
+    {
+      "targetId": "69691edc9f473b0770b00bdd",
+      "type": "MOTHER"
+    }
+  ],
+  "_class": "com.famistry.famistry_personnel.model.Person"
+},
+{
+  "_id": {
+    "$oid": "696920029f473b0770b00be4"
+  },
+  "name": "Zayn S",
+  "gender": "male",
+  "birthDate": {
+    "$date": "2017-01-22T18:30:00.000Z"
+  },
+  "fatherId": "69691f439f473b0770b00be0",
+  "motherId": "69691edc9f473b0770b00bdd",
+  "spouseId": "",
+  "isAlive": true,
+  "imageUrl": "",
+  "attributes": {},
+  "relationships": [
+    {
+      "targetId": "69691edc9f473b0770b00bdd",
+      "type": "MOTHER"
+    },
+    {
+      "targetId": "69691f439f473b0770b00be0",
+      "type": "FATHER"
+    }
+  ],
+  "_class": "com.famistry.famistry_personnel.model.Person"
+},
+{
+  "_id": {
+    "$oid": "6969201c9f473b0770b00be5"
+  },
+  "name": "Aman R",
+  "gender": "male",
+  "birthDate": {
+    "$date": "2016-12-17T18:30:00.000Z"
+  },
+  "fatherId": "69691f059f473b0770b00bde",
+  "motherId": "69691f9a9f473b0770b00be1",
+  "spouseId": "",
+  "isAlive": true,
+  "imageUrl": "",
+  "attributes": {},
+  "relationships": [
+    {
+      "targetId": "69691f059f473b0770b00bde",
+      "type": "FATHER"
+    },
+    {
+      "targetId": "69691f9a9f473b0770b00be1",
+      "type": "MOTHER"
+    }
+  ],
+  "_class": "com.famistry.famistry_personnel.model.Person"
+}]

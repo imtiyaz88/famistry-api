@@ -1,0 +1,161 @@
+### Famistry API samples
+
+### Create person
+POST http://localhost:8080/api/person
+Content-Type: application/json
+
+{
+	"name": "John Doe",
+	"gender": "male",
+	"birthDate": "1970-01-15",
+	"fatherId": null,
+	"motherId": null,
+	"spouseId": null,
+	"isAlive": true,
+	"imageUrl": "http://example.com/photos/john.jpg",
+	"attributes": { "aka": "" , "birthPlace":""},
+	"relationships": []
+}
+
+### Create another person (parent)
+POST http://localhost:8080/api/person
+Content-Type: application/json
+
+{
+	"name": "Jane Doe",
+	"gender": "female",
+	"birthDate": "1945-06-01",
+	"fatherId": null,
+	"motherId": null,
+	"spouseId": null,
+	"isAlive": true,
+	"imageUrl": "http://example.com/photos/jane.jpg",
+	"attributes": { "birthYear": "1945" },
+	"relationships": []
+}
+
+### List people
+GET http://localhost:8080/api/person
+
+### Get person by id (replace :id)
+GET http://localhost:8080/api/person/6968b2ed57694e7cf562d88f
+
+### Update person (replace :id)
+PUT http://localhost:8080/api/person/6968b2ed57694e7cf562d88f
+Content-Type: application/json
+
+{
+	"name": "John Q. Doe",
+	"gender": "male",
+	"birthDate": "1970-01-15",
+	"fatherId": ":fatherId",
+	"motherId": ":motherId",
+	"spouseId": null,
+	"isAlive": true,
+	"imageUrl": "http://example.com/photos/john.jpg",
+	"attributes": { "birthPlace": "Chittoor", "note": "updated" },
+	"relationships": []
+}
+
+### Delete person (replace :id)
+DELETE http://localhost:8080/api/person/6968b2ed57694e7cf562d88f
+
+### Add relationship (mark a parent relationship)
+# Example: make person :childId have parent :parentId
+POST http://localhost:8080/api/person/:childId/relationships
+Content-Type: application/json
+
+{
+	"targetId": ":parentId",
+	"type": "parent"
+}
+
+### Add father relationship
+POST http://localhost:8080/api/person/6968b61b57694e7cf562d892/relationships
+Content-Type: application/json
+
+{
+	"targetId": ":fatherId",
+	"type": "father"
+}
+
+### Remove relationship (replace :id and :targetId)
+DELETE http://localhost:8080/api/person/6968b61b57694e7cf562d892/relationships/:fatherId
+
+### Get graph for person (replace :id), depth param optional
+GET http://localhost:8080/api/person/:id/graph?depth=2
+
+### Get relations sets (parents, children, siblings, grandparents, grandchildren, parents-siblings, cousins)
+GET http://localhost:8080/api/person/:id/relations/parents
+GET http://localhost:8080/api/person/:id/relations/children
+GET http://localhost:8080/api/person/:id/relations/siblings
+GET http://localhost:8080/api/person/:id/relations/grandparents
+GET http://localhost:8080/api/person/:id/relations/grandchildren
+GET http://localhost:8080/api/person/:id/relations/parents-siblings
+GET http://localhost:8080/api/person/:id/relations/cousins
+
+### Example sequence (create family tree)
+# 1) Create grandparent
+POST http://localhost:8080/api/person
+Content-Type: application/json
+
+{
+	"name": "Grandpa Joe",
+	"gender": "male",
+	"birthDate": "1940-03-12",
+	"fatherId": null,
+	"motherId": null,
+	"spouseId": null,
+	"attributes": { "birthYear": "1940" }
+}
+
+# 2) Create parent
+POST http://localhost:8080/api/person
+Content-Type: application/json
+
+{
+	"name": "Parent Anna",
+	"gender": "female",
+	"birthDate": "1965-07-01",
+	"fatherId": ":grandpaJoeId",
+	"motherId": null,
+	"spouseId": null,
+	"attributes": { "birthYear": "1965" }
+}
+
+# 3) Create child
+POST http://localhost:8080/api/person
+Content-Type: application/json
+
+{
+	"name": "Child Sam",
+	"gender": "male",
+	"birthDate": "1990-11-20",
+	"fatherId": null,
+	"motherId": ":parentAnnaId",
+	"spouseId": null,
+	"attributes": { "birthYear": "1990" }
+}
+
+# 4) Link Parent Anna as child of Grandpa Joe (Parent Anna -> parent Grandpa Joe)
+POST http://localhost:8080/api/person/:parentAnnaId/relationships
+Content-Type: application/json
+
+{
+	"targetId": ":grandpaJoeId",
+	"type": "parent"
+}
+
+# 5) Link Child Sam as child of Parent Anna
+POST http://localhost:8080/api/person/:childSamId/relationships
+Content-Type: application/json
+
+{
+	"targetId": ":parentAnnaId",
+	"type": "parent"
+}
+
+# After these, fetch graph and relations for `:childSamId` to verify parents/grandparents
+GET http://localhost:8080/api/person/:childSamId/graph?depth=2
+GET http://localhost:8080/api/person/:childSamId/relations/parents
+GET http://localhost:8080/api/person/:childSamId/relations/grandparents
