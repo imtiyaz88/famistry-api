@@ -8,7 +8,6 @@ import com.famistry.famistry_personnel.model.Person;
 import com.famistry.famistry_personnel.model.Relationship;
 import com.famistry.famistry_personnel.repository.PersonRepository;
 import com.famistry.famistry_personnel.dto.PersonDto;
-import com.famistry.famistry_personnel.dto.RelationshipDto;
 
 @Service
 public class PersonService {
@@ -121,40 +120,142 @@ public class PersonService {
         });
     }
 
-    public Map<String, Object> graph(String rootId, int depth) {
-        Map<String, Object> result = new HashMap<>();
-        Map<String, PersonDto> nodes = new LinkedHashMap<>();
-        List<RelationshipDto> edges = new ArrayList<>();
+    public List<PersonDto> graph(String rootId, int depth) {
         if (!repo.existsById(rootId)) {
-            result.put("nodes", nodes.values());
-            result.put("edges", edges);
-            return result;
+            return new ArrayList<>();
         }
-        Queue<String> q = new ArrayDeque<>();
-        Set<String> seen = new HashSet<>();
-        q.add(rootId);
-        seen.add(rootId);
-        int level = 0;
-        while (!q.isEmpty() && level <= depth) {
-            int sz = q.size();
-            for (int i = 0; i < sz; i++) {
-                String id = q.poll();
-                repo.findById(id).ifPresent(p -> {
-                    nodes.putIfAbsent(p.getId(), new PersonDto(p.getId(), p.getName(), p.getBirthDate(), p.getDeathDate(), p.getFatherId(), p.getMotherId(), p.getSpouseId(), p.isAlive(), p.getImageUrl(), p.getAttributes(), p.getComment()));
-                    for (Relationship r : p.getRelationships()) {
-                        String t = r.getType() == null ? null : r.getType().value();
-                        edges.add(new RelationshipDto(p.getId(), r.getTargetId(), t));
-                        if (!seen.contains(r.getTargetId())) {
-                            seen.add(r.getTargetId());
-                            q.add(r.getTargetId());
-                        }
-                    }
-                });
+        
+        // First, collect all people to easily find relationships
+        List<Person> allPeople = repo.findAll();
+        
+        Set<String> resultIds = new LinkedHashSet<>();
+        
+        // Always include the root person
+        resultIds.add(rootId);
+        
+        repo.findById(rootId).ifPresent(rootPerson -> {
+            System.out.println("=== Building graph for: " + rootPerson.getName() + " (" + rootId + ") ===");
+            
+            // 1. Add direct parents
+            String fatherId = rootPerson.getFatherId();
+            String motherId = rootPerson.getMotherId();
+            
+            System.out.println("Parents: father=" + fatherId + ", mother=" + motherId);
+            
+            if (fatherId != null && !fatherId.trim().isEmpty()) {
+                resultIds.add(fatherId);
+                System.out.println("Added father: " + fatherId);
             }
-            level++;
-        }
-        result.put("nodes", nodes.values());
-        result.put("edges", edges);
+            if (motherId != null && !motherId.trim().isEmpty()) {
+                resultIds.add(motherId);
+                System.out.println("Added mother: " + motherId);
+            }
+            
+            // 2. Add grandparents (parents of parents)
+            Set<String> grandparentIds = new HashSet<>();
+            for (Person person : allPeople) {
+                if (person.getId().equals(fatherId) || person.getId().equals(motherId)) {
+                    if (person.getFatherId() != null && !person.getFatherId().trim().isEmpty()) {
+                        resultIds.add(person.getFatherId());
+                        grandparentIds.add(person.getFatherId());
+                        System.out.println("Added grandfather (father of " + person.getName() + "): " + person.getFatherId());
+                    }
+                    if (person.getMotherId() != null && !person.getMotherId().trim().isEmpty()) {
+                        resultIds.add(person.getMotherId());
+                        grandparentIds.add(person.getMotherId());
+                        System.out.println("Added grandmother (mother of " + person.getName() + "): " + person.getMotherId());
+                    }
+                }
+            }
+            
+            // 3. Add parent's siblings (aunts and uncles)
+            // Find all children of grandparents, excluding the direct parents
+            System.out.println("Finding parent's siblings (children of grandparents)...");
+            for (Person person : allPeople) {
+                if (!person.getId().equals(fatherId) && !person.getId().equals(motherId)) {
+                    boolean childOfGrandfather = person.getFatherId() != null && !person.getFatherId().trim().isEmpty() && grandparentIds.contains(person.getFatherId());
+                    boolean childOfGrandmother = person.getMotherId() != null && !person.getMotherId().trim().isEmpty() && grandparentIds.contains(person.getMotherId());
+                    
+                    if (childOfGrandfather || childOfGrandmother) {
+                        resultIds.add(person.getId());
+                        System.out.println("Added parent's sibling: " + person.getName() + " (" + person.getId() + ")");
+                        System.out.println("  - Father: " + person.getFatherId() + " (in grandparentIds: " + childOfGrandfather + ")");
+                        System.out.println("  - Mother: " + person.getMotherId() + " (in grandparentIds: " + childOfGrandmother + ")");
+                    }
+                }
+            }
+            
+            // 4. Add children
+            List<Person> children = new ArrayList<>();
+            System.out.println("Finding children...");
+            for (Person person : allPeople) {
+                if (rootPerson.getId().equals(person.getFatherId()) || rootPerson.getId().equals(person.getMotherId())) {
+                    resultIds.add(person.getId());
+                    children.add(person);
+                    System.out.println("Added child: " + person.getName() + " (" + person.getId() + ")");
+                }
+            }
+            
+            // 4.1. Add siblings of the given person
+            System.out.println("Finding siblings of the given person...");
+            for (Person person : allPeople) {
+                if (!person.getId().equals(rootId)) { // Exclude the root person
+                    String personFatherId = person.getFatherId();
+                    String personMotherId = person.getMotherId();
+                    
+                    boolean sameFather = personFatherId != null && !personFatherId.trim().isEmpty() && personFatherId.equals(fatherId);
+                    boolean sameMother = personMotherId != null && !personMotherId.trim().isEmpty() && personMotherId.equals(motherId);
+                    
+                    // They are siblings if they share at least one parent
+                    if (sameFather || sameMother) {
+                        resultIds.add(person.getId());
+                        System.out.println("Added sibling: " + person.getName() + " (" + person.getId() + ")");
+                        System.out.println("  - Same father: " + sameFather + " (father: " + personFatherId + ")");
+                        System.out.println("  - Same mother: " + sameMother + " (mother: " + personMotherId + ")");
+                    }
+                }
+            }
+            
+            // 4.2. Add partner of the given person
+            System.out.println("Finding partner of the given person...");
+            String rootPersonSpouseId = rootPerson.getSpouseId();
+            if (rootPersonSpouseId != null && !rootPersonSpouseId.trim().isEmpty()) {
+                resultIds.add(rootPersonSpouseId);
+                System.out.println("Added partner: " + rootPersonSpouseId + " (partner of " + rootPerson.getName() + ")");
+            }
+            
+            // 5. Add children's partners
+            System.out.println("Finding children's partners...");
+            for (Person child : children) {
+                String spouseId = child.getSpouseId();
+                if (spouseId != null && !spouseId.trim().isEmpty()) {
+                    resultIds.add(spouseId);
+                    System.out.println("Added child's partner: " + spouseId + " (partner of " + child.getName() + ")");
+                }
+            }
+            
+            // 6. Add grandchildren (children of children)
+            System.out.println("Finding grandchildren...");
+            for (Person child : children) {
+                for (Person person : allPeople) {
+                    String personFatherId = person.getFatherId();
+                    String personMotherId = person.getMotherId();
+                    boolean childIsFather = personFatherId != null && !personFatherId.trim().isEmpty() && child.getId().equals(personFatherId);
+                    boolean childIsMother = personMotherId != null && !personMotherId.trim().isEmpty() && child.getId().equals(personMotherId);
+                    
+                    if (childIsFather || childIsMother) {
+                        resultIds.add(person.getId());
+                        System.out.println("Added grandchild: " + person.getName() + " (" + person.getId() + ")");
+                    }
+                }
+            }
+            
+            System.out.println("=== Final result IDs: " + resultIds + " ===");
+        });
+        
+        // Convert all collected IDs to PersonDto list (same as person API)
+        List<PersonDto> result = toDtos(resultIds);
+        System.out.println("=== Final result count: " + result.size() + " ===");
         return result;
     }
 

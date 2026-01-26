@@ -156,6 +156,9 @@ Content-Type: application/json
 }
 
 # After these, fetch graph and relations for `:childSamId` to verify parents/grandparents
-GET http://localhost:8080/api/person/:childSamId/graph?depth=2
+
+GET http://localhost:8080/api/person/69691e889f473b0770b00bdb/graph?depth=3
+
+
 GET http://localhost:8080/api/person/:childSamId/relations/parents
 GET http://localhost:8080/api/person/:childSamId/relations/grandparents

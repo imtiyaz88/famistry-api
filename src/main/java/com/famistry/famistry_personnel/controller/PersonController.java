@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.famistry.famistry_personnel.model.Person;
 import com.famistry.famistry_personnel.model.Relationship;
+import com.famistry.famistry_personnel.dto.PersonDto;
 import com.famistry.famistry_personnel.service.PersonService;
 
 @RestController
@@ -60,7 +61,7 @@ public class PersonController {
     }
 
     @GetMapping("/{id}/graph")
-    public Map<String, Object> graph(@PathVariable String id, @RequestParam(defaultValue = "1") int depth) {
+    public List<PersonDto> graph(@PathVariable String id, @RequestParam(defaultValue = "1") int depth) {
         return svc.graph(id, Math.max(0, depth));
     }
 
