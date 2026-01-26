@@ -1,290 +1,526 @@
-[{
-  "_id": {
-    "$oid": "69691e889f473b0770b00bdb"
-  },
-  "name": "Khadar Basha",
-  "gender": "male",
-  "birthDate": {
-    "$date": {
-      "$numberLong": "-477898200000"
-    }
-  },
-  "fatherId": "",
-  "motherId": "",
-  "spouseId": "69691eb29f473b0770b00bdc",
-  "isAlive": true,
-  "imageUrl": "",
-  "attributes": {},
-  "relationships": [
+[
     {
-      "targetId": "69691eb29f473b0770b00bdc",
-      "type": "PARTNER"
-    }
-  ],
-  "_class": "com.famistry.famistry_personnel.model.Person"
-},
-{
-  "_id": {
-    "$oid": "69691eb29f473b0770b00bdc"
-  },
-  "name": "Naseem Taj",
-  "gender": "female",
-  "birthDate": {
-    "$date": {
-      "$numberLong": "-396855000000"
-    }
-  },
-  "fatherId": "",
-  "motherId": "",
-  "spouseId": "69691e889f473b0770b00bdb",
-  "isAlive": true,
-  "imageUrl": "",
-  "attributes": {},
-  "relationships": [
-    {
-      "targetId": "69691e889f473b0770b00bdb",
-      "type": "PARTNER"
-    }
-  ],
-  "_class": "com.famistry.famistry_personnel.model.Person"
-},
-{
-  "_id": {
-    "$oid": "69691edc9f473b0770b00bdd"
-  },
-  "name": "Reshma M",
-  "gender": "female",
-  "birthDate": {
-    "$date": "1983-11-12T18:30:00.000Z"
-  },
-  "fatherId": "69691e889f473b0770b00bdb",
-  "motherId": "69691eb29f473b0770b00bdc",
-  "spouseId": "69691f439f473b0770b00be0",
-  "isAlive": true,
-  "imageUrl": "",
-  "attributes": {},
-  "relationships": [
-    {
-      "targetId": "69691f439f473b0770b00be0",
-      "type": "PARTNER"
+        "name": "Khadar Basha",
+        "alive": true,
+        "attributes": {},
+        "birthDate": "1954-11-10",
+        "comment": null,
+        "deathDate": null,
+        "fatherId": "6974d1f2ac6410bb6b7b9850",
+        "gender": "male",
+        "id": "69691e889f473b0770b00bdb",
+        "imageUrl": "",
+        "motherId": "6974d4e2ac6410bb6b7b9851",
+        "relationships": [
+            {
+                "targetId": "69691eb29f473b0770b00bdc",
+                "type": "partner"
+            },
+            {
+                "targetId": "6974d1f2ac6410bb6b7b9850",
+                "type": "father"
+            },
+            {
+                "targetId": "6974d4e2ac6410bb6b7b9851",
+                "type": "mother"
+            }
+        ],
+        "spouseId": "69691eb29f473b0770b00bdc"
     },
     {
-      "targetId": "69691e889f473b0770b00bdb",
-      "type": "FATHER"
+        "name": "Naseem Taj",
+        "alive": true,
+        "attributes": {},
+        "birthDate": "1957-06-05",
+        "comment": null,
+        "deathDate": null,
+        "fatherId": "",
+        "gender": "female",
+        "id": "69691eb29f473b0770b00bdc",
+        "imageUrl": "",
+        "motherId": "",
+        "relationships": [
+            {
+                "targetId": "69691e889f473b0770b00bdb",
+                "type": "partner"
+            }
+        ],
+        "spouseId": "69691e889f473b0770b00bdb"
     },
     {
-      "targetId": "69691eb29f473b0770b00bdc",
-      "type": "MOTHER"
-    }
-  ],
-  "_class": "com.famistry.famistry_personnel.model.Person"
-},
-{
-  "_id": {
-    "$oid": "69691f059f473b0770b00bde"
-  },
-  "name": "Imtiyaz M",
-  "gender": "male",
-  "birthDate": {
-    "$date": "1986-09-17T18:30:00.000Z"
-  },
-  "fatherId": "69691e889f473b0770b00bdb",
-  "motherId": "69691eb29f473b0770b00bdc",
-  "spouseId": "69691f9a9f473b0770b00be1",
-  "isAlive": true,
-  "imageUrl": "",
-  "attributes": {},
-  "relationships": [
-    {
-      "targetId": "69691f9a9f473b0770b00be1",
-      "type": "PARTNER"
+        "name": "Reshma M",
+        "alive": true,
+        "attributes": {},
+        "birthDate": "1983-11-13",
+        "comment": null,
+        "deathDate": null,
+        "fatherId": "69691e889f473b0770b00bdb",
+        "gender": "female",
+        "id": "69691edc9f473b0770b00bdd",
+        "imageUrl": "",
+        "motherId": "69691eb29f473b0770b00bdc",
+        "relationships": [
+            {
+                "targetId": "69691f439f473b0770b00be0",
+                "type": "partner"
+            },
+            {
+                "targetId": "69691e889f473b0770b00bdb",
+                "type": "father"
+            },
+            {
+                "targetId": "69691eb29f473b0770b00bdc",
+                "type": "mother"
+            }
+        ],
+        "spouseId": "69691f439f473b0770b00be0"
     },
     {
-      "targetId": "69691e889f473b0770b00bdb",
-      "type": "FATHER"
+        "name": "Imtiyaz M",
+        "alive": true,
+        "attributes": {},
+        "birthDate": "1986-09-18",
+        "comment": null,
+        "deathDate": null,
+        "fatherId": "69691e889f473b0770b00bdb",
+        "gender": "male",
+        "id": "69691f059f473b0770b00bde",
+        "imageUrl": "",
+        "motherId": "69691eb29f473b0770b00bdc",
+        "relationships": [
+            {
+                "targetId": "69691f9a9f473b0770b00be1",
+                "type": "partner"
+            },
+            {
+                "targetId": "69691e889f473b0770b00bdb",
+                "type": "father"
+            },
+            {
+                "targetId": "69691eb29f473b0770b00bdc",
+                "type": "mother"
+            }
+        ],
+        "spouseId": "69691f9a9f473b0770b00be1"
     },
     {
-      "targetId": "69691eb29f473b0770b00bdc",
-      "type": "MOTHER"
-    }
-  ],
-  "_class": "com.famistry.famistry_personnel.model.Person"
-},
-{
-  "_id": {
-    "$oid": "69691f249f473b0770b00bdf"
-  },
-  "name": "Javeed M",
-  "gender": "male",
-  "birthDate": {
-    "$date": "1991-06-30T18:30:00.000Z"
-  },
-  "fatherId": "69691e889f473b0770b00bdb",
-  "motherId": "69691eb29f473b0770b00bdc",
-  "spouseId": "69691fc29f473b0770b00be2",
-  "isAlive": true,
-  "imageUrl": "",
-  "attributes": {},
-  "relationships": [
-    {
-      "targetId": "69691fc29f473b0770b00be2",
-      "type": "PARTNER"
+        "name": "Javeed M",
+        "alive": true,
+        "attributes": {},
+        "birthDate": "1991-07-01",
+        "comment": null,
+        "deathDate": null,
+        "fatherId": "69691e889f473b0770b00bdb",
+        "gender": "male",
+        "id": "69691f249f473b0770b00bdf",
+        "imageUrl": "",
+        "motherId": "69691eb29f473b0770b00bdc",
+        "relationships": [
+            {
+                "targetId": "69691fc29f473b0770b00be2",
+                "type": "partner"
+            },
+            {
+                "targetId": "69691e889f473b0770b00bdb",
+                "type": "father"
+            },
+            {
+                "targetId": "69691eb29f473b0770b00bdc",
+                "type": "mother"
+            }
+        ],
+        "spouseId": "69691fc29f473b0770b00be2"
     },
     {
-      "targetId": "69691e889f473b0770b00bdb",
-      "type": "FATHER"
+        "name": "Shabeer S",
+        "alive": true,
+        "attributes": {},
+        "birthDate": "1981-01-25",
+        "comment": null,
+        "deathDate": null,
+        "fatherId": "",
+        "gender": "male",
+        "id": "69691f439f473b0770b00be0",
+        "imageUrl": "",
+        "motherId": "",
+        "relationships": [
+            {
+                "targetId": "69691edc9f473b0770b00bdd",
+                "type": "partner"
+            }
+        ],
+        "spouseId": "69691edc9f473b0770b00bdd"
     },
     {
-      "targetId": "69691eb29f473b0770b00bdc",
-      "type": "MOTHER"
-    }
-  ],
-  "_class": "com.famistry.famistry_personnel.model.Person"
-},
-{
-  "_id": {
-    "$oid": "69691f439f473b0770b00be0"
-  },
-  "name": "Shabeer S",
-  "gender": "male",
-  "birthDate": {
-    "$date": "1981-01-24T18:30:00.000Z"
-  },
-  "fatherId": "",
-  "motherId": "",
-  "spouseId": "69691edc9f473b0770b00bdd",
-  "isAlive": true,
-  "imageUrl": "",
-  "attributes": {},
-  "relationships": [
-    {
-      "targetId": "69691edc9f473b0770b00bdd",
-      "type": "PARTNER"
-    }
-  ],
-  "_class": "com.famistry.famistry_personnel.model.Person"
-},
-{
-  "_id": {
-    "$oid": "69691f9a9f473b0770b00be1"
-  },
-  "name": "Husna S",
-  "gender": "female",
-  "birthDate": {
-    "$date": "1987-05-31T18:30:00.000Z"
-  },
-  "fatherId": "",
-  "motherId": "",
-  "spouseId": "69691f059f473b0770b00bde",
-  "isAlive": true,
-  "imageUrl": "",
-  "attributes": {},
-  "relationships": [
-    {
-      "targetId": "69691f059f473b0770b00bde",
-      "type": "PARTNER"
-    }
-  ],
-  "_class": "com.famistry.famistry_personnel.model.Person"
-},
-{
-  "_id": {
-    "$oid": "69691fc29f473b0770b00be2"
-  },
-  "name": "Fahima S",
-  "gender": "female",
-  "fatherId": "",
-  "motherId": "",
-  "spouseId": "69691f249f473b0770b00bdf",
-  "isAlive": true,
-  "imageUrl": "",
-  "attributes": {},
-  "relationships": [
-    {
-      "targetId": "69691f249f473b0770b00bdf",
-      "type": "PARTNER"
-    }
-  ],
-  "_class": "com.famistry.famistry_personnel.model.Person"
-},
-{
-  "_id": {
-    "$oid": "69691fe49f473b0770b00be3"
-  },
-  "name": "Rehaan S",
-  "gender": "male",
-  "birthDate": {
-    "$date": "2010-12-26T18:30:00.000Z"
-  },
-  "fatherId": "69691f439f473b0770b00be0",
-  "motherId": "69691edc9f473b0770b00bdd",
-  "spouseId": "",
-  "isAlive": true,
-  "imageUrl": "",
-  "attributes": {},
-  "relationships": [
-    {
-      "targetId": "69691f439f473b0770b00be0",
-      "type": "FATHER"
+        "name": "Husna S",
+        "alive": true,
+        "attributes": {},
+        "birthDate": "1987-06-01",
+        "comment": null,
+        "deathDate": null,
+        "fatherId": "",
+        "gender": "female",
+        "id": "69691f9a9f473b0770b00be1",
+        "imageUrl": "",
+        "motherId": "",
+        "relationships": [
+            {
+                "targetId": "69691f059f473b0770b00bde",
+                "type": "partner"
+            }
+        ],
+        "spouseId": "69691f059f473b0770b00bde"
     },
     {
-      "targetId": "69691edc9f473b0770b00bdd",
-      "type": "MOTHER"
-    }
-  ],
-  "_class": "com.famistry.famistry_personnel.model.Person"
-},
-{
-  "_id": {
-    "$oid": "696920029f473b0770b00be4"
-  },
-  "name": "Zayn S",
-  "gender": "male",
-  "birthDate": {
-    "$date": "2017-01-22T18:30:00.000Z"
-  },
-  "fatherId": "69691f439f473b0770b00be0",
-  "motherId": "69691edc9f473b0770b00bdd",
-  "spouseId": "",
-  "isAlive": true,
-  "imageUrl": "",
-  "attributes": {},
-  "relationships": [
-    {
-      "targetId": "69691edc9f473b0770b00bdd",
-      "type": "MOTHER"
+        "name": "Fahima S",
+        "alive": true,
+        "attributes": {},
+        "birthDate": null,
+        "comment": null,
+        "deathDate": null,
+        "fatherId": "",
+        "gender": "female",
+        "id": "69691fc29f473b0770b00be2",
+        "imageUrl": "",
+        "motherId": "",
+        "relationships": [
+            {
+                "targetId": "69691f249f473b0770b00bdf",
+                "type": "partner"
+            }
+        ],
+        "spouseId": "69691f249f473b0770b00bdf"
     },
     {
-      "targetId": "69691f439f473b0770b00be0",
-      "type": "FATHER"
-    }
-  ],
-  "_class": "com.famistry.famistry_personnel.model.Person"
-},
-{
-  "_id": {
-    "$oid": "6969201c9f473b0770b00be5"
-  },
-  "name": "Aman R",
-  "gender": "male",
-  "birthDate": {
-    "$date": "2016-12-17T18:30:00.000Z"
-  },
-  "fatherId": "69691f059f473b0770b00bde",
-  "motherId": "69691f9a9f473b0770b00be1",
-  "spouseId": "",
-  "isAlive": true,
-  "imageUrl": "",
-  "attributes": {},
-  "relationships": [
-    {
-      "targetId": "69691f059f473b0770b00bde",
-      "type": "FATHER"
+        "name": "Rehaan S",
+        "alive": true,
+        "attributes": {},
+        "birthDate": "2010-12-27",
+        "comment": null,
+        "deathDate": null,
+        "fatherId": "69691f439f473b0770b00be0",
+        "gender": "male",
+        "id": "69691fe49f473b0770b00be3",
+        "imageUrl": "",
+        "motherId": "69691edc9f473b0770b00bdd",
+        "relationships": [
+            {
+                "targetId": "69691f439f473b0770b00be0",
+                "type": "father"
+            },
+            {
+                "targetId": "69691edc9f473b0770b00bdd",
+                "type": "mother"
+            }
+        ],
+        "spouseId": ""
     },
     {
-      "targetId": "69691f9a9f473b0770b00be1",
-      "type": "MOTHER"
+        "name": "Zayn S",
+        "alive": true,
+        "attributes": {},
+        "birthDate": "2017-01-23",
+        "comment": null,
+        "deathDate": null,
+        "fatherId": "69691f439f473b0770b00be0",
+        "gender": "male",
+        "id": "696920029f473b0770b00be4",
+        "imageUrl": "",
+        "motherId": "69691edc9f473b0770b00bdd",
+        "relationships": [
+            {
+                "targetId": "69691edc9f473b0770b00bdd",
+                "type": "mother"
+            },
+            {
+                "targetId": "69691f439f473b0770b00be0",
+                "type": "father"
+            }
+        ],
+        "spouseId": ""
+    },
+    {
+        "name": "Aman R",
+        "alive": true,
+        "attributes": {},
+        "birthDate": "2016-12-18",
+        "comment": null,
+        "deathDate": null,
+        "fatherId": "69691f059f473b0770b00bde",
+        "gender": "male",
+        "id": "6969201c9f473b0770b00be5",
+        "imageUrl": "",
+        "motherId": "69691f9a9f473b0770b00be1",
+        "relationships": [
+            {
+                "targetId": "69691f059f473b0770b00bde",
+                "type": "father"
+            },
+            {
+                "targetId": "69691f9a9f473b0770b00be1",
+                "type": "mother"
+            }
+        ],
+        "spouseId": ""
+    },
+    {
+        "name": "Ghouse Saheb M",
+        "alive": false,
+        "attributes": {},
+        "birthDate": "1906-07-01",
+        "comment": null,
+        "deathDate": null,
+        "fatherId": "",
+        "gender": "male",
+        "id": "6974d1f2ac6410bb6b7b9850",
+        "imageUrl": "",
+        "motherId": "",
+        "relationships": [
+            {
+                "targetId": "6974d4e2ac6410bb6b7b9851",
+                "type": "partner"
+            }
+        ],
+        "spouseId": "6974d4e2ac6410bb6b7b9851"
+    },
+    {
+        "name": "Zehrabi",
+        "alive": false,
+        "attributes": {},
+        "birthDate": "1923-07-01",
+        "comment": null,
+        "deathDate": null,
+        "fatherId": "",
+        "gender": "female",
+        "id": "6974d4e2ac6410bb6b7b9851",
+        "imageUrl": "",
+        "motherId": "",
+        "relationships": [
+            {
+                "targetId": "6974d1f2ac6410bb6b7b9850",
+                "type": "partner"
+            }
+        ],
+        "spouseId": "6974d1f2ac6410bb6b7b9850"
+    },
+    {
+        "name": "Abdul Razaq Sab",
+        "alive": false,
+        "attributes": {},
+        "birthDate": "1870-07-01",
+        "comment": null,
+        "deathDate": null,
+        "fatherId": "",
+        "gender": "male",
+        "id": "6974d720ac6410bb6b7b9852",
+        "imageUrl": "",
+        "motherId": "",
+        "relationships": [
+            {
+                "targetId": "6974d797ac6410bb6b7b9853",
+                "type": "partner"
+            }
+        ],
+        "spouseId": "6974d797ac6410bb6b7b9853"
+    },
+    {
+        "name": "Madarbee",
+        "alive": false,
+        "attributes": {},
+        "birthDate": "1885-07-01",
+        "comment": null,
+        "deathDate": null,
+        "fatherId": "",
+        "gender": "female",
+        "id": "6974d797ac6410bb6b7b9853",
+        "imageUrl": "",
+        "motherId": "",
+        "relationships": [
+            {
+                "targetId": "6974d720ac6410bb6b7b9852",
+                "type": "partner"
+            }
+        ],
+        "spouseId": "6974d720ac6410bb6b7b9852"
+    },
+    {
+        "name": "Hussain M",
+        "alive": false,
+        "attributes": {},
+        "birthDate": "1900-07-01",
+        "comment": null,
+        "deathDate": null,
+        "fatherId": "6974d720ac6410bb6b7b9852",
+        "gender": "male",
+        "id": "6974d887ac6410bb6b7b9854",
+        "imageUrl": "",
+        "motherId": "6974d797ac6410bb6b7b9853",
+        "relationships": [
+            {
+                "targetId": "6974d720ac6410bb6b7b9852",
+                "type": "father"
+            },
+            {
+                "targetId": "6974d797ac6410bb6b7b9853",
+                "type": "mother"
+            }
+        ],
+        "spouseId": ""
+    },
+    {
+        "name": "Abba Phuphu1",
+        "alive": false,
+        "attributes": {},
+        "birthDate": null,
+        "comment": null,
+        "deathDate": null,
+        "fatherId": "6974d720ac6410bb6b7b9852",
+        "gender": "female",
+        "id": "6974db95ac6410bb6b7b9855",
+        "imageUrl": "",
+        "motherId": "6974d797ac6410bb6b7b9853",
+        "relationships": [
+            {
+                "targetId": "6974d720ac6410bb6b7b9852",
+                "type": "father"
+            },
+            {
+                "targetId": "6974d797ac6410bb6b7b9853",
+                "type": "mother"
+            }
+        ],
+        "spouseId": ""
+    },
+    {
+        "name": "Saabju Sab",
+        "alive": true,
+        "attributes": {},
+        "birthDate": null,
+        "comment": null,
+        "deathDate": null,
+        "fatherId": "",
+        "gender": "male",
+        "id": "6974dbcfac6410bb6b7b9856",
+        "imageUrl": "",
+        "motherId": "",
+        "relationships": [],
+        "spouseId": "6974db95ac6410bb6b7b9855"
+    },
+    {
+        "name": "Fathima bi",
+        "alive": true,
+        "attributes": {},
+        "birthDate": null,
+        "comment": null,
+        "deathDate": null,
+        "fatherId": "6974dbcfac6410bb6b7b9856",
+        "gender": "female",
+        "id": "6974dc85ac6410bb6b7b9857",
+        "imageUrl": "",
+        "motherId": "6974db95ac6410bb6b7b9855",
+        "relationships": [],
+        "spouseId": ""
+    },
+    {
+        "name": "Mahboob bi",
+        "alive": false,
+        "attributes": {},
+        "birthDate": null,
+        "comment": null,
+        "deathDate": null,
+        "fatherId": "6974dbcfac6410bb6b7b9856",
+        "gender": "female",
+        "id": "6974dd0fac6410bb6b7b9858",
+        "imageUrl": "",
+        "motherId": "6974db95ac6410bb6b7b9855",
+        "relationships": [
+            {
+                "targetId": "6974dbcfac6410bb6b7b9856",
+                "type": "father"
+            },
+            {
+                "targetId": "6974db95ac6410bb6b7b9855",
+                "type": "mother"
+            }
+        ],
+        "spouseId": ""
+    },
+    {
+        "name": "Khatoon Bi",
+        "alive": true,
+        "attributes": {},
+        "birthDate": null,
+        "comment": null,
+        "deathDate": null,
+        "fatherId": "6974dbcfac6410bb6b7b9856",
+        "gender": "female",
+        "id": "6974ddbbac6410bb6b7b9859",
+        "imageUrl": "",
+        "motherId": "6974db95ac6410bb6b7b9855",
+        "relationships": [],
+        "spouseId": ""
+    },
+    {
+        "name": "Baajaan",
+        "alive": false,
+        "attributes": {},
+        "birthDate": null,
+        "comment": null,
+        "deathDate": null,
+        "fatherId": "6974dbcfac6410bb6b7b9856",
+        "gender": "male",
+        "id": "6974dde6ac6410bb6b7b985a",
+        "imageUrl": "",
+        "motherId": "6974db95ac6410bb6b7b9855",
+        "relationships": [],
+        "spouseId": ""
+    },
+    {
+        "name": "Abba Phuphu2",
+        "alive": false,
+        "attributes": {},
+        "birthDate": null,
+        "comment": "Chotu ki Saas, Ainakawale Daadi",
+        "deathDate": null,
+        "fatherId": "6974d720ac6410bb6b7b9852",
+        "gender": "female",
+        "id": "6974de8fac6410bb6b7b985b",
+        "imageUrl": "",
+        "motherId": "6974d797ac6410bb6b7b9853",
+        "relationships": [
+            {
+                "targetId": "6974d720ac6410bb6b7b9852",
+                "type": "father"
+            },
+            {
+                "targetId": "6974d797ac6410bb6b7b9853",
+                "type": "mother"
+            }
+        ],
+        "spouseId": ""
+    },
+    {
+        "name": "Abba Phuphu3",
+        "alive": false,
+        "attributes": {},
+        "birthDate": null,
+        "comment": "Zulekha",
+        "deathDate": null,
+        "fatherId": "6974d720ac6410bb6b7b9852",
+        "gender": "female",
+        "id": "697507a4ac4442849c3d7c0c",
+        "imageUrl": "",
+        "motherId": "6974d797ac6410bb6b7b9853",
+        "relationships": [
+            {
+                "targetId": "6974d720ac6410bb6b7b9852",
+                "type": "father"
+            },
+            {
+                "targetId": "6974d797ac6410bb6b7b9853",
+                "type": "mother"
+            }
+        ],
+        "spouseId": ""
     }
-  ],
-  "_class": "com.famistry.famistry_personnel.model.Person"
-}]
+]

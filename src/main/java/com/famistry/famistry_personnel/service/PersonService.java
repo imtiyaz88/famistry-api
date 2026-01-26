@@ -24,6 +24,7 @@ public class PersonService {
             existing.setName(updated.getName());
             existing.setGender(updated.getGender());
             existing.setBirthDate(updated.getBirthDate());
+            existing.setDeathDate(updated.getDeathDate());
             existing.setFatherId(updated.getFatherId());
             existing.setMotherId(updated.getMotherId());
             existing.setSpouseId(updated.getSpouseId());
@@ -31,6 +32,7 @@ public class PersonService {
             existing.setImageUrl(updated.getImageUrl());
             existing.setAttributes(updated.getAttributes());
             existing.setRelationships(updated.getRelationships());
+            existing.setComment(updated.getComment());
             return repo.save(existing);
         }).orElseGet(() -> {
             updated.setId(id);
@@ -138,7 +140,7 @@ public class PersonService {
             for (int i = 0; i < sz; i++) {
                 String id = q.poll();
                 repo.findById(id).ifPresent(p -> {
-                    nodes.putIfAbsent(p.getId(), new PersonDto(p.getId(), p.getName(), p.getBirthDate(), p.getFatherId(), p.getMotherId(), p.getSpouseId(), p.isAlive(), p.getImageUrl(), p.getAttributes()));
+                    nodes.putIfAbsent(p.getId(), new PersonDto(p.getId(), p.getName(), p.getBirthDate(), p.getDeathDate(), p.getFatherId(), p.getMotherId(), p.getSpouseId(), p.isAlive(), p.getImageUrl(), p.getAttributes(), p.getComment()));
                     for (Relationship r : p.getRelationships()) {
                         String t = r.getType() == null ? null : r.getType().value();
                         edges.add(new RelationshipDto(p.getId(), r.getTargetId(), t));
@@ -160,7 +162,7 @@ public class PersonService {
     private List<PersonDto> toDtos(Collection<String> ids) {
         List<PersonDto> dtos = new ArrayList<>();
         for (String id : ids) {
-            repo.findById(id).ifPresent(p -> dtos.add(new PersonDto(p.getId(), p.getName(), p.getBirthDate(), p.getFatherId(), p.getMotherId(), p.getSpouseId(), p.isAlive(), p.getImageUrl(), p.getAttributes())));
+            repo.findById(id).ifPresent(p -> dtos.add(new PersonDto(p.getId(), p.getName(), p.getBirthDate(), p.getDeathDate(), p.getFatherId(), p.getMotherId(), p.getSpouseId(), p.isAlive(), p.getImageUrl(), p.getAttributes(), p.getComment())));
         }
         return dtos;
     }

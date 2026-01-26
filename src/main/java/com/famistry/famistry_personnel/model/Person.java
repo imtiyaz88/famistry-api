@@ -16,6 +16,7 @@ public class Person {
     private String name;
     private String gender;
     private LocalDate birthDate;
+    private LocalDate deathDate;
     private String fatherId;
     private String motherId;
     private String spouseId;
@@ -23,6 +24,7 @@ public class Person {
     private String imageUrl;
     private Map<String, String> attributes = new HashMap<>();
     private List<Relationship> relationships = new ArrayList<>();
+    private String comment;
 
     public Person() {}
     public Person(String name) { this.name = name; }
@@ -38,6 +40,9 @@ public class Person {
 
     public LocalDate getBirthDate() { return birthDate; }
     public void setBirthDate(LocalDate birthDate) { this.birthDate = birthDate; }
+
+    public LocalDate getDeathDate() { return deathDate; }
+    public void setDeathDate(LocalDate deathDate) { this.deathDate = deathDate; }
 
     public String getFatherId() { return fatherId; }
     public void setFatherId(String fatherId) { this.fatherId = fatherId; }
@@ -59,4 +64,7 @@ public class Person {
 
     public List<Relationship> getRelationships() { return relationships; }
     public void setRelationships(List<Relationship> relationships) { this.relationships = relationships; }
+
+    public String getComment(){return comment;}
+    public void setComment(String comment){this.comment = comment;}
 }
