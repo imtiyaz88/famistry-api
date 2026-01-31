@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: famistry
+  mongodb:
+    uri: ${SPRING_DATA_MONGODB_URI}
+
+server:
+  port: 8080
+
+# Docker-specific configuration
+logging:
+  level:
+    '[org.mongodb.driver]': DEBUG
+    '[com.famistry]': DEBUG

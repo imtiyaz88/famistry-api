@@ -1,8 +1,8 @@
 spring:
   application:
-    name: famistry-personnel
+    name: famistry
   mongodb:
-    uri: mongodb://localhost:27017/famistry
+    uri: mongodb://famistry_user1:famistry_pass1@localhost:27017/famistry_db1?authSource=admin
 
 server:
   port: 8080
