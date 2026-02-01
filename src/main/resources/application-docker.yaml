@@ -3,6 +3,8 @@ spring:
     name: famistry
   mongodb:
     uri: ${SPRING_DATA_MONGODB_URI}
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
 
 server:
   port: 8080

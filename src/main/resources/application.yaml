@@ -3,6 +3,10 @@ spring:
     name: famistry
   mongodb:
     uri: mongodb://famistry_user1:famistry_pass1@localhost:27017/famistry_db1?authSource=admin
-
+  kafka:
+    bootstrap-servers: localhost:9094
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 server:
   port: 8080

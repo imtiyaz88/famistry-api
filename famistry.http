@@ -1,4 +1,22 @@
+### Analytics API samples
+
+POST http://localhost:8080/api/analytics/event
+Content-Type: application/json	
+
+{
+	"eventType": "PERSON_CREATED",
+	"userId": "6968b2ed57694e7cf562d88f",
+	"entityId": "6968b2ed57694e7cf562d88f",
+	"entityType": "PERSON",
+	"metadata": {},
+	"timestamp": 1727846400000
+}
+
+
 ### Famistry API samples
+
+### List people
+GET http://localhost:8080/api/person
 
 ### Create person
 POST http://localhost:8080/api/person
