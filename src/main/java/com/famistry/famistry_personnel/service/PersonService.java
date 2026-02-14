@@ -1,21 +1,74 @@
 package com.famistry.famistry_personnel.service;
 
 import java.util.*;
+import java.lang.reflect.Field;
+import java.time.LocalDate;
 
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import com.famistry.famistry_personnel.model.Person;
 import com.famistry.famistry_personnel.model.Relationship;
 import com.famistry.famistry_personnel.repository.PersonRepository;
+import com.famistry.famistry_personnel.dto.AnalyticsEventDto;
 import com.famistry.famistry_personnel.dto.PersonDto;
 
 @Service
 public class PersonService {
     private final PersonRepository repo;
+    private final KafkaTemplate<String, AnalyticsEventDto> kafkaTemplate;
 
-    public PersonService(PersonRepository repo) { this.repo = repo; }
+    public PersonService(PersonRepository repo, KafkaTemplate<String, AnalyticsEventDto> kafkaTemplate) { 
+        this.repo = repo; 
+        this.kafkaTemplate = kafkaTemplate;
+    }
 
-    public Person create(Person p) { return repo.save(p); }
+    /**
+     * Utility method to convert object fields to metadata map
+     * Excludes null values and complex objects (lists, nested objects)
+     */
+    private Map<String, Object> createMetadataFromObject(Object obj) {
+        Map<String, Object> metadata = new HashMap<>();
+        if (obj == null) return metadata;
+        
+        Class<?> clazz = obj.getClass();
+        for (Field field : clazz.getDeclaredFields()) {
+            try {
+                field.setAccessible(true);
+                Object value = field.get(obj);
+                
+                // Skip null values
+                if (value == null) continue;
+                
+                // Skip complex objects that shouldn't be in metadata
+                if (value instanceof List || value instanceof Map) continue;
+                
+                // Convert LocalDate to string for JSON serialization
+                if (value instanceof LocalDate) {
+                    value = value.toString();
+                }
+                
+                metadata.put(field.getName(), value);
+            } catch (IllegalAccessException e) {
+                // Skip fields that can't be accessed
+                continue;
+            }
+        }
+        return metadata;
+    }
+
+    public Person create(Person p) { 
+        Person created = repo.save(p);
+        AnalyticsEventDto event = new AnalyticsEventDto();
+        event.setEventType("PERSON_CREATED");  
+        event.setUserId("system");
+        event.setEntityId(created.getId());
+        event.setEntityType("PERSON");
+        event.setMetadata(createMetadataFromObject(created));
+        event.setTimestamp(System.currentTimeMillis());
+        // In a real application, you would inject KafkaTemplate and send the event to Kafka here
+        kafkaTemplate.send("person-events", event);
+        return created; }
     public Optional<Person> findById(String id) { return repo.findById(id); }
     public List<Person> findAll() { return repo.findAll(); }
     public Person update(String id, Person updated) {
@@ -32,10 +85,32 @@ public class PersonService {
             existing.setAttributes(updated.getAttributes());
             existing.setRelationships(updated.getRelationships());
             existing.setComment(updated.getComment());
-            return repo.save(existing);
+            Person saved = repo.save(existing);
+            
+            AnalyticsEventDto event = new AnalyticsEventDto();
+            event.setEventType("PERSON_UPDATED");
+            event.setUserId("system");
+            event.setEntityId(saved.getId());
+            event.setEntityType("PERSON");
+            event.setMetadata(createMetadataFromObject(saved));
+            event.setTimestamp(System.currentTimeMillis());
+            kafkaTemplate.send("person-events", event);
+            
+            return saved;
         }).orElseGet(() -> {
             updated.setId(id);
-            return repo.save(updated);
+            Person saved = repo.save(updated);
+            
+            AnalyticsEventDto event = new AnalyticsEventDto();
+            event.setEventType("PERSON_UPDATED");
+            event.setUserId("system");
+            event.setEntityId(saved.getId());
+            event.setEntityType("PERSON");
+            event.setMetadata(createMetadataFromObject(saved));
+            event.setTimestamp(System.currentTimeMillis());
+            kafkaTemplate.send("person-events", event);
+            
+            return saved;
         });
     }
     public void delete(String id) throws IllegalArgumentException {
@@ -43,7 +118,20 @@ public class PersonService {
             if (!p.getRelationships().isEmpty()) {
                 throw new IllegalArgumentException("Cannot delete person with existing relationships. Please remove all relationships first.");
             }
+            
+            // Store person info for event before deletion
+            String personId = p.getId();
+            
             repo.deleteById(id);
+            
+            AnalyticsEventDto event = new AnalyticsEventDto();
+            event.setEventType("PERSON_DELETED");
+            event.setUserId("system");
+            event.setEntityId(personId);
+            event.setEntityType("PERSON");
+            event.setMetadata(createMetadataFromObject(p));
+            event.setTimestamp(System.currentTimeMillis());
+            kafkaTemplate.send("person-events", event);
         });
     }
 
@@ -75,7 +163,22 @@ public class PersonService {
                     repo.save(target);
                 });
             }
-            return repo.save(p);
+            Person saved = repo.save(p);
+            
+            AnalyticsEventDto event = new AnalyticsEventDto();
+            event.setEventType("RELATIONSHIP_ADDED");
+            event.setUserId("system");
+            event.setEntityId(saved.getId());
+            event.setEntityType("PERSON");
+            event.setMetadata(Map.of(
+                "sourceId", sourceId,
+                "targetId", rel.getTargetId(),
+                "relationshipType", rel.getType().toString()
+            ));
+            event.setTimestamp(System.currentTimeMillis());
+            kafkaTemplate.send("person-events", event);
+            
+            return saved;
         });
     }
 
@@ -116,7 +219,22 @@ public class PersonService {
                 });
             }
             
-            return repo.save(p);
+            Person saved = repo.save(p);
+            
+            AnalyticsEventDto event = new AnalyticsEventDto();
+            event.setEventType("RELATIONSHIP_REMOVED");
+            event.setUserId("system");
+            event.setEntityId(saved.getId());
+            event.setEntityType("PERSON");
+            event.setMetadata(Map.of(
+                "sourceId", sourceId,
+                "targetId", targetId,
+                "relationshipType", relType != null ? relType.toString() : "UNKNOWN"
+            ));
+            event.setTimestamp(System.currentTimeMillis());
+            kafkaTemplate.send("person-events", event);
+            
+            return saved;
         });
     }
 
